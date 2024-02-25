@@ -1,7 +1,50 @@
 ﻿#include <iostream>
 #include <Windows.h>
+#include <vector>
 
 
+class Car {
+    virtual void make_sound() = 0;
+
+    Items get_item() {
+        return *item;
+    }
+    void set_item(Items* obj) {
+        this->item = obj;
+    }
+
+private:
+    Items* item;
+};
+
+class Fura:public Car {
+    void make_sound() override {
+        std::cout << "это фура!" << "\n";
+    }
+};
+
+class Gasel :public Car {
+    void make_sound() override {
+        std::cout << "это Газель!" << "\n";
+    }
+};
+
+enum class Items
+{
+    None, // Small
+    Type0, // Big
+    
+};
+
+
+std::ostream& operator<<(std::ostream& os, const Items& c)
+{
+    switch (c) {
+    case Items::None: os << "Small"; break;
+    case Items::Type0: os << "Big"; break;
+    }
+    return os;
+}
 
 class House_strategy{
 public:
@@ -51,8 +94,14 @@ private :
     int space;
     std::string name;
     House_strategy *strategy;
+    Сar *car;
 
 };
+
+
+
+
+
 
 
 int main()
